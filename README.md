@@ -33,3 +33,7 @@ ComicsViewer1.0.0-SNAPSHOT
 
 ## 联系以及BUG反馈
 [masazumi_@outlook.com]
+
+## 该版本的工作
+
+实现ComicsViewer支持多级目录的更新
