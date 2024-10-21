@@ -11,17 +11,18 @@ BASE_PATH =""
 # CONTENTS_PATH = BASE_PATH + "/contents"
 # CONTENTS_PATH ="E:\二次元\本子\按IP\碧蓝航线"
 
-DATA_PATH = "data/data"
 INDEX_HTML = "/index.html"
 CONTENT_HTML = "/29f459a44fee58c9.html"
 
-TEMPLETE_URL ="E:/二次元/本子"
+TEMPLETE_URL ="E:/二次元/本子/ComicsViewer-master"
 TEMPLETE_HTML = "E:/二次元/本子/ComicsViewer-master/h/templete.html"
 INDEX_TEMPLETE_HTML = "E:/二次元/本子/ComicsViewer-master/h/index_templete.html"
 
 IMG_SUFFIX = [".jpg", ".png", ".jpeg", ".gif",".webp"]
 
-BASE_DIR="E:\二次元\本子\测试"
+BASE_DIR="E:\二次元\本子\按作者"
+DATA_PATH_UP=BASE_DIR+"/data"
+DATA_PATH = DATA_PATH_UP+"/data"
 PARENT_DIRS_WITH_IMAGES=set()
 def createComicItems(title, content_path, first_img, count):
 	templete = r'<li><a href="{url}" target="_blank" title="{title}"><h2>{title}</h2><div class="image"><img class="lazy" src="{first_img}"><table class="data"><tr><th scope="row">枚数</th><td>{count}枚</td></tr><tr><td class="tag" colspan="2"><span>{title}</span></td></tr></table></div><p class="date">{date}</p></a></li><!--{comic_contents}-->'
@@ -83,7 +84,13 @@ def createContentHtml(contentPath):
 	output2Html(htmlStr, contentPath + CONTENT_HTML)
 	return [title, contentPath, imgData[0], count]
 
+def createDataDictionaryifNotExite(folder_path):
+	if not os.path.exists(folder_path):
+		# 创建文件夹
+		os.makedirs(folder_path)
+
 def pushData(data):
+	createDataDictionaryifNotExite(DATA_PATH_UP)
 	with shelve.open(DATA_PATH) as write:
 		write[data[0]] = data
 
