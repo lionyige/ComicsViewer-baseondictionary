@@ -8,19 +8,17 @@ import fnmatch
 
 ORIGINAL_BASE_PATH = os.getcwd()
 BASE_PATH =""
-# CONTENTS_PATH = BASE_PATH + "/contents"
-# CONTENTS_PATH ="E:\二次元\本子\按IP\碧蓝航线"
 
 INDEX_HTML = "/index.html"
 CONTENT_HTML = "/29f459a44fee58c9.html"
 
-TEMPLETE_URL ="E:/二次元/本子/ComicsViewer-master"
-TEMPLETE_HTML = "E:/二次元/本子/ComicsViewer-master/h/templete.html"
-INDEX_TEMPLETE_HTML = "E:/二次元/本子/ComicsViewer-master/h/index_templete.html"
+TEMPLETE_URL =os.path.dirname(os.path.abspath(__file__))
+TEMPLETE_HTML=os.path.dirname(os.path.abspath(__file__))+"/h/templete.html"
+INDEX_TEMPLETE_HTML = os.path.dirname(os.path.abspath(__file__))+"/h/index_templete.html"
 
 IMG_SUFFIX = [".jpg", ".png", ".jpeg", ".gif",".webp"]
 
-BASE_DIR="E:\二次元\本子\按作者"
+BASE_DIR="E:\二次元\本子\原创"
 DATA_PATH_UP=BASE_DIR+"/data"
 DATA_PATH = DATA_PATH_UP+"/data"
 PARENT_DIRS_WITH_IMAGES=set()
