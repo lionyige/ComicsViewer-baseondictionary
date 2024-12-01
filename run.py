@@ -18,7 +18,7 @@ INDEX_TEMPLETE_HTML = os.path.dirname(os.path.abspath(__file__))+"/h/index_templ
 
 IMG_SUFFIX = [".jpg", ".png", ".jpeg", ".gif",".webp"]
 
-BASE_DIR="E:\二次元\本子\原创"
+BASE_DIR=""
 DATA_PATH_UP=BASE_DIR+"/data"
 DATA_PATH = DATA_PATH_UP+"/data"
 PARENT_DIRS_WITH_IMAGES=set()
