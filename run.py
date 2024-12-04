@@ -5,13 +5,12 @@ import os
 import time
 import shelve
 import sys
-import fnmatch
 
 ORIGINAL_BASE_PATH = os.getcwd()
-BASE_PATH =""
+BASE_PATH =sys.argv[1]
 
 INDEX_HTML = "/index.html"
-CONTENT_HTML = "/29f459a44fee58c9.html"
+CONTENT_HTML = "/"+sys.argv[1].split('\\')[-1]+".html"
 
 TEMPLETE_URL =os.path.dirname(os.path.abspath(__file__))
 TEMPLETE_HTML=os.path.dirname(os.path.abspath(__file__))+"/h/templete.html"
@@ -34,7 +33,6 @@ def createComicItems(title, content_path, first_img, count):
 	return templete
 
 def getTempleteHtml(templeteURL):
-	base=BASE_PATH
 	templete = open(templeteURL, "r", encoding="UTF-8")
 	htmlStr = templete.read()
 	templete.close()
@@ -134,7 +132,7 @@ def getContentPaths(path):
 	return contentPaths
 
 def traversedirsoath(base_dir):
-	image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff')
+	image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff','.webp',)
 	for root, dirnames, filenames in os.walk(base_dir):
 		# 检查当前目录中的文件
 		if any(f.lower().endswith(image_extensions) for f in filenames):
@@ -144,20 +142,19 @@ def traversedirsoath(base_dir):
 	# 	print(parent_dir)
 
 
-def get_substring_before_last_backslash(path):
-	# 使用 rfind 找到最后一个 \ 的索引
-	# 使用 rsplit 从字符串右侧分割，最多分割成 2 部分
-	parts = path.rsplit('\\', 2)
-
-	# 如果分割得到的部分数量少于 2，说明没有足够的反斜杠
-	# 否则返回倒数第二个部分
-	return parts[0] if len(parts) > 1 else ''
+# def get_substring_before_last_backslash(path):
+# 	# 使用 rfind 找到最后一个 \ 的索引
+# 	# 使用 rsplit 从字符串右侧分割，最多分割成 2 部分
+# 	parts = path.rsplit('\\', 2)
+#
+# 	# 如果分割得到的部分数量少于 2，说明没有足够的反斜杠
+# 	# 否则返回倒数第二个部分
+# 	return parts[0] if len(parts) > 1 else ''
 
 
 if __name__ == '__main__':
 	traversedirsoath(BASE_DIR)
 	for contentPath in PARENT_DIRS_WITH_IMAGES:
-		BASE_PATH=get_substring_before_last_backslash(contentPath)
 		if checkFileExist(contentPath + CONTENT_HTML):	continue
 		data = createContentHtml(contentPath)
 		if data is not None:
